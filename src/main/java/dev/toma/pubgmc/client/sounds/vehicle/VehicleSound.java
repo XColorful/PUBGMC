@@ -1,4 +1,4 @@
-package dev.toma.pubgmc.common.entity.vehicles.sounds;
+package dev.toma.pubgmc.client.sounds.vehicle;
 
 import dev.toma.pubgmc.common.entity.vehicles.EntityDriveable;
 import net.minecraft.client.audio.MovingSound;

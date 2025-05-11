@@ -15,23 +15,21 @@ import dev.toma.pubgmc.client.models.equipment.LargeBackpackModel;
 import dev.toma.pubgmc.client.models.equipment.MediumBackpackModel;
 import dev.toma.pubgmc.client.models.equipment.NightVisionModel;
 import dev.toma.pubgmc.client.models.equipment.SmallBackpackModel;
-import dev.toma.pubgmc.client.renderer.entity.RenderEnemyAIPlayer;
-import dev.toma.pubgmc.client.renderer.entity.RenderFuelCan;
-import dev.toma.pubgmc.client.renderer.entity.RenderParachute;
-import dev.toma.pubgmc.client.renderer.entity.RenderPlane;
-import dev.toma.pubgmc.client.renderer.entity.RenderUAZ;
-import dev.toma.pubgmc.client.renderer.entity.RenderDacia;
+import dev.toma.pubgmc.client.renderer.entity.*;
 import dev.toma.pubgmc.client.renderer.item.attachment.*;
 import dev.toma.pubgmc.client.renderer.item.gun.WeaponRenderer;
 import dev.toma.pubgmc.client.renderer.throwable.RenderThrowable;
 import dev.toma.pubgmc.client.renderer.tileentity.LootSpawnerRenderer;
 import dev.toma.pubgmc.client.renderer.tileentity.RenderAirdrop;
+import dev.toma.pubgmc.client.sounds.vehicle.ClientLandVehicleSoundController;
 import dev.toma.pubgmc.client.util.KeyBinds;
 import dev.toma.pubgmc.client.util.RecipeButton;
 import dev.toma.pubgmc.common.entity.*;
 import dev.toma.pubgmc.common.entity.throwables.*;
-import dev.toma.pubgmc.common.entity.vehicles.VehicleUAZ;
+import dev.toma.pubgmc.common.entity.vehicles.EntityLandVehicle;
+import dev.toma.pubgmc.common.entity.vehicles.util.LandVehicleSoundController;
 import dev.toma.pubgmc.common.entity.vehicles.VehicleDacia;
+import dev.toma.pubgmc.common.entity.vehicles.VehicleUAZ;
 import dev.toma.pubgmc.common.items.attachment.ItemMuzzle;
 import dev.toma.pubgmc.common.items.equipment.ItemBackpack;
 import dev.toma.pubgmc.common.items.guns.GunBase;
@@ -47,7 +45,6 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
@@ -66,7 +63,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -146,6 +142,11 @@ public class ClientProxy extends Proxy {
         } catch (Exception e) {
             Pubgmc.logger.fatal(e);
         }
+    }
+
+    @Override
+    public LandVehicleSoundController createLandVehicleSoundController(EntityLandVehicle vehicle) {
+        return new ClientLandVehicleSoundController(vehicle);
     }
 
     public static AnimationLoader getAnimationLoader() {

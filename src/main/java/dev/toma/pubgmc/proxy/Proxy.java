@@ -1,6 +1,8 @@
 package dev.toma.pubgmc.proxy;
 
 import dev.toma.pubgmc.api.capability.IPlayerData;
+import dev.toma.pubgmc.common.entity.vehicles.EntityLandVehicle;
+import dev.toma.pubgmc.common.entity.vehicles.util.LandVehicleSoundController;
 import dev.toma.pubgmc.common.items.guns.GunBase;
 import dev.toma.pubgmc.common.items.guns.GunBuilder;
 import net.minecraft.item.ItemStack;
@@ -38,5 +40,9 @@ public abstract class Proxy {
 
     public void initWeapon(GunBuilder builder, GunBase gunBase) {
 
+    }
+
+    public LandVehicleSoundController createLandVehicleSoundController(EntityLandVehicle vehicle) {
+        throw new UnsupportedOperationException("Method not implemented");
     }
 }
